@@ -1,0 +1,46 @@
+<div
+  class="d-flex flex-column align-items-center justify-content-center"
+  style="margin: 15px auto"
+>
+
+  <h3>Add Student result to Interview</h3>
+  <form class="w-50 border p-4 m-2" method="post" action="/add-student-result">
+    <input
+        type="text"
+        class="form-control"
+        id="id"
+        name="id"
+        value="<%=interview._id%>"
+        hidden
+    />
+
+    <div class="mb-3">
+      <label for="email" class="form-label">Student Email address</label>
+      <select class="form-select" id="email" name="email">
+      <%studentsList.map((student, index) => {%> 
+        <option value="<%=student.email%>"><%=student.name%></option>
+      <%})%>       
+      </select>
+    </div>
+
+    <div class="mb-3">
+        <select class="form-select" id="result" name="result">
+            <option value="pass">Passed</option>
+            <option value="fail">Failed</option>
+            <option value="hold">Hold</option>
+            <option value="noAttempt">Didn't attempt</option>
+        </select>
+    </div>
+    
+    <% if(errorMsg){ %>
+      <div class="text-danger fw-bold text-capitalize">
+        <%= errorMsg %>
+      </div>
+      <% } %>
+      
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info">Submit</button>
+      <a href="/dashboard" class="btn btn-danger ms-2">Cancel</a>
+    </div>
+  </form>
+</div>

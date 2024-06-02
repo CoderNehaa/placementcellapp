@@ -1,6 +1,7 @@
 import { UserModel } from "../models/user.model.js";
 import bcrypt from "bcrypt";
 import crypto from "crypto";
+import { connectDB } from "../config/db.js";
 
 export class UserController {
     async signup(req, res) {
@@ -46,7 +47,24 @@ export class UserController {
             if (err) {
                 console.log(err);
             } else {
-                res.redirect('signin');
+                res.redirect('/signin');
+            }
+        })
+    }
+
+    async updateProfile (req, res){
+        const {name, email, password, confirmPassword} = req.body;
+        if(password != confirmPassword){
+            return res.render("profile", {errorMsg:"Password does not match with confirm password", user:req.session.user});
+        }
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const db = await connectDB();
+        await db.collection('users').updateOne({ email: email }, { $set: { name, email, password:hashedPassword } });
+        req.session.destroy(err => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.render('signin', {errorMsg:null});
             }
         })
     }

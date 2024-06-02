@@ -3,7 +3,17 @@
   style="margin: 15px auto"
 >
   <h3>Edit Interview</h3>
-  <form class="w-50 border p-4 m-2" method="post" action="/add-interview">
+  <form class="w-50 border p-4 m-2" method="post" action="/edit-interview">
+    <input
+        type="text"
+        class="form-control"
+        id="id"
+        name="id"
+        value="<%=interview._id%>"
+        required
+        hidden
+      />
+
     <div class="mb-3">
       <label for="companyName" class="form-label">Company Name</label>
       <input

@@ -15,7 +15,6 @@ export class StudentModel{
     static async addStudent(student){
         const {name, email, collegeName, status, batch, dsaScore, webScore, reactScore} = student;
         const newStudent  = new StudentModel(name, email, collegeName, status, batch, dsaScore, webScore, reactScore);
-        console.log(newStudent);
         const db = await connectDB();
         const result = await db.collection('students').insertOne(newStudent);
     }    

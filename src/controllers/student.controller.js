@@ -35,7 +35,6 @@ export class StudentController {
     const db = await connectDB();
     const objectId = new ObjectId(id);
     const student = {
-      _id: objectId,
       name,
       email,
       collegeName,
@@ -50,4 +49,19 @@ export class StudentController {
       .updateOne({ _id: ObjectId }, { $set: student });
       res.redirect('/dashboard');
   }
+
+  async deleteStudent(req, res){
+    const {id} = req.params
+    const db = await connectDB();
+    const objectId = new ObjectId(id);
+    const result = await db.collection('students').deleteOne({ _id: objectId });
+    if (result.deletedCount === 1) {
+        console.log(`Successfully deleted student with id ${id}`);
+    } else {
+        console.log(`Student with id ${id} not found`);
+    }
+    res.redirect('/dashboard');
+  }
+    
 }
+

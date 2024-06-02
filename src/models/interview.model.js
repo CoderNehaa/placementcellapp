@@ -13,12 +13,5 @@ export class InterviewModel{
         const result = await db.collection('interviews').insertOne(newInterview);
     }
 
-    static assignInterview(){
-
-    }
-
-    
-
-
 }
 
