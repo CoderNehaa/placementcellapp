@@ -1,0 +1,31 @@
+<div class="d-flex flex-column align-items-center justify-content-center" style="margin: 24px auto">
+  <h1 class="mb-4">Placement cell app</h1>
+  <h3>Signin to your account</h3>
+  <form class="w-50 border p-4 m-2" method="post" action="/signin">
+    <div class="mb-3">
+      <label for="email" class="form-label">Email address</label>
+      <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" required>
+    </div>
+    <div class="mb-1">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="password" name="password">
+    </div>
+
+    <% if(errorMsg){ %>
+      <div class="text-danger fw-bold text-capitalize">
+        <%= errorMsg %>
+      </div>
+      <% } %>
+      <div class="d-flex fw-semibold justify-content-between align-items-center">
+        <button type="submit" class="btn btn-primary my-3">Sign In</button>
+        <a href="/forgot-password"  style="text-decoration: none; color: blue;">Forgot password?</a>
+      </div>
+      </form>
+
+  <div class="fw-semibold">
+    <a href="/signup"  style="text-decoration: none; color: maroon;">Don't have an account? Create your account</a>
+  </div>
+
+</div>
+
+

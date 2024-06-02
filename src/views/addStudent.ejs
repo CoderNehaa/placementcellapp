@@ -1,0 +1,100 @@
+<div
+  class="d-flex flex-column align-items-center justify-content-center"
+  style="margin: 15px auto"
+>
+  <h3>Add New Student</h3>
+  <form class="w-50 border p-4 m-2" method="post" action="/add-student">
+    <div class="mb-3">
+      <label for="name" class="form-label">Student Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        name="name"
+        placeholder="Enter student name"
+        required
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">Email address</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        name="email"
+        placeholder="Enter email address"
+        required
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="collegeName" class="form-label">College Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="collegeName"
+        name="collegeName"
+        placeholder="Enter student college name"
+        required
+      />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label" for="status">Placement status</label>
+      <select class="form-select" id="status" name="status" required>
+        <option value="placed">Placed</option>
+        <option value="notPlaced">Not placed</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="batch" class="form-label">Student Batch</label>
+      <input
+        type="text"
+        class="form-control"
+        id="batch"
+        name="batch"
+        placeholder="Enter student batch"
+        required
+      />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Test Score</label>
+      <div class="d-flex">
+        <input
+          type="text"
+          class="form-control me-2"
+          id="dsaScore"
+          name="dsaScore"
+          placeholder="Enter DSA score"
+          required
+        />
+
+        <input
+          type="text"
+          class="form-control me-2"
+          id="webScore"
+          name="webScore"
+          placeholder="Enter Web dev score"
+          required
+        />
+
+        <input
+          type="text"
+          class="form-control"
+          id="reactScore"
+          name="reactScore"
+          placeholder="Enter React score"
+          required
+        />
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info">Submit</button>
+      <a href="/dashboard" class="btn btn-danger ms-2">Cancel</a>
+    </div>
+  </form>
+</div>
