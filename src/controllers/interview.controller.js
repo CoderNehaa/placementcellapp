@@ -71,9 +71,11 @@ export class InterviewController {
         (student) => student.email === email
       );
       if (isStudentAssigned) {
+        const studentsList = await db.collection('students').find().toArray();
         return res.render("addStudentResult", {
           interview: interview,
-          errorMsg: "Student with this email address is already added",
+          errorMsg: "This student is already added",
+          studentsList
         });
       }
 
@@ -81,6 +83,18 @@ export class InterviewController {
       await db
         .collection("interviews")
         .updateOne({ _id: objectId }, { $push: { studentsAssigned: obj } });
+
+        const studentInterview = {
+          companyName:interview.companyName,
+          interviewDate:interview.interviewDate,
+          result:result
+        }
+  
+        const student = await db.collection('students').findOne({ email: email });
+        const studentId = new ObjectId(student._id);
+        await db
+        .collection("students")
+        .updateOne({ _id: studentId }, { $push: { studentInterview: studentInterview } });
 
       res.redirect("/dashboard");
     } catch (error) {

@@ -9,7 +9,8 @@ export class StudentModel{
         this.batch = batch,
         this.dsaScore = dsaScore,
         this.webScore = webScore,
-        this.reactScore = reactScore
+        this.reactScore = reactScore,
+        this.studentInterview = []
     }
 
     static async addStudent(student){
@@ -18,7 +19,5 @@ export class StudentModel{
         const db = await connectDB();
         const result = await db.collection('students').insertOne(newStudent);
     }    
-
-
 }
 

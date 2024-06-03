@@ -1,6 +1,7 @@
 import express from "express";
 import { ensureAuthenticated } from "../middlewares/auth.middleware.js";
 import { dataValidation } from "../middlewares/validation.middleware.js";
+import { generateCSVReport} from "../utils/reportGenerator.js"; 
 
 import { UserController } from "../controllers/user.controller.js";
 import { StudentController } from "../controllers/student.controller.js";
@@ -50,6 +51,11 @@ router.get(
 );
 
 router.post('/profile', userController.updateProfile);
+
+router.get("/generate-report", async (req, res) => {
+    await generateCSVReport();
+    res.download("report.csv", "report.csv");
+});
 
 export default router
 

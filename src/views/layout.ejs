@@ -45,6 +45,24 @@
           });
         });
       });
+      document
+        .getElementById("downloadButton")
+        .addEventListener("click", function () {
+          fetch("/generate-report")
+            .then((response) => response.blob())
+            .then((blob) => {
+              const url = window.URL.createObjectURL(blob);
+              const a = document.createElement("a");
+              a.href = url;
+              a.download = "report.csv";
+              document.body.appendChild(a);
+              a.click();
+              window.URL.revokeObjectURL(url);
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+            });
+        });
     </script>
   </body>
 </html>
